@@ -235,5 +235,5 @@ st.divider()
 st.caption(
     "© 2026 Shishir Dahake · Apache-2.0 · Built on "
     "[DinoGPT](https://github.com/shishirdahake/dino_gpt)."
-    "[Check out our DPO Page here.](https://github.com/shishirdahake/refine_dino_gpt)"
+    " [Check out our DPO Page here.](https://github.com/shishirdahake/refine_dino_gpt)"
 )
