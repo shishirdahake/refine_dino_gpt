@@ -7,6 +7,8 @@
 In episode 1, I built DinoGPT from scratch: a character-level transformer (1 block, 4 heads, 53,533 parameters) trained on 1,535 dinosaur names. [Try it live](https://dino-gpt.streamlit.app/).
  
 Episode 2 fine-tunes it with **human feedback**. A voting app shows two names generated from the same starting letters, people pick the one they prefer, and those votes are used to fine-tune the model with **DPO** (Direct Preference Optimization).
+
+We are collecting preferences on https://vote-dino-name.streamlit.app/.
  
 ## Plan
  
