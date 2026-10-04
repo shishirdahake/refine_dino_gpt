@@ -1,0 +1,11 @@
+__pycache__/
+.ipynb_checkpoints/
+untitled.md
+.vscode/
+*:Zone.Identifier
+.streamlit/secrets.toml
+votes/
+s3 Bucket.txt
+test_permissions.sh
+finetune_dpo.ipynb
+dino_names.txt
