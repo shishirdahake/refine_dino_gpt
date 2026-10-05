@@ -47,12 +47,17 @@ def is_valid_vote(vote):
         return False
 
 
+def is_empty(csv_path):
+    return not csv_path.exists() or csv_path.stat().st_size == 0
+
+
 def known_vote_ids(csv_path):
-    # vote_ids already in the CSV. An empty set if the CSV doesn't exist yet.
-    if not csv_path.exists():
+    # vote_ids already in the CSV: always the first column. An empty set if the
+    # CSV doesn't exist yet or is empty. Copes with a file that has no header row.
+    if is_empty(csv_path):
         return set()
     with csv_path.open(newline="") as f:
-        return {row["vote_id"] for row in csv.DictReader(f)}
+        return {row[0] for row in csv.reader(f) if row and row[0] != "vote_id"}
 
 
 def list_vote_keys(s3, bucket=BUCKET):
@@ -99,7 +104,7 @@ def sync_votes(csv_path=CSV_PATH, bucket=BUCKET, profile=PROFILE, s3=None):
 
     if new_votes:
         csv_path.parent.mkdir(parents=True, exist_ok=True)
-        write_header = not csv_path.exists()
+        write_header = is_empty(csv_path)      # new file, or an empty one
         with csv_path.open("a", newline="") as f:
             writer = csv.DictWriter(f, fieldnames=FIELDS, extrasaction="ignore")
             if write_header:
